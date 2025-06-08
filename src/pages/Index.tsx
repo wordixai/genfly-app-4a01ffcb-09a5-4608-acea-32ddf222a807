@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import HeroCarousel from '../components/HeroCarousel';
+import SecondaryBanner from '../components/SecondaryBanner';
 import CategoryGrid from '../components/CategoryGrid';
 import ProductSection from '../components/ProductSection';
 import PromoBanner from '../components/PromoBanner';
@@ -12,30 +13,24 @@ const Index = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ma-primary mx-auto mb-4"></div>
-          <p className="text-ma-secondary">Cargando...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Cargando...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
       {/* Hero Carousel */}
       <HeroCarousel />
 
-      {/* Promo Banner */}
-      <div className="container mx-auto px-4 py-8">
-        <PromoBanner 
-          image="https://checkout.mueblesamerica.mx/media/wysiwyg/2160X359_DESKTOP_25MONEDERO_3.jpg"
-          alt="25% en monedero"
-          link="/promotions/promociones-ma"
-        />
-      </div>
+      {/* Secondary Promo Banner */}
+      <SecondaryBanner />
 
       {/* Category Grid */}
       <CategoryGrid />
@@ -78,7 +73,7 @@ const Index = () => {
       </div>
 
       {/* Free Shipping Banner */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 mb-8">
         <PromoBanner 
           image="https://checkout.mueblesamerica.mx/media/wysiwyg/2160X359_DESKTOP_envio_1.jpg"
           alt="Envío gratis"

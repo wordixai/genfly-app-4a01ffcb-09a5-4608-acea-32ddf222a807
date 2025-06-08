@@ -29,13 +29,13 @@ const ServiceGrid = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-8 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {services.map((service) => (
             <div key={service.id} className="group cursor-pointer">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-square overflow-hidden">
+              <div className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="aspect-square overflow-hidden rounded-lg">
                   <img
                     src={service.image}
                     alt={service.name}
@@ -45,10 +45,10 @@ const ServiceGrid = () => {
                 </div>
                 <div className="p-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-ma-secondary group-hover:text-ma-primary transition-colors">
+                    <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
                       {service.name}
                     </h3>
-                    <ChevronRight className="w-5 h-5 text-ma-secondary group-hover:text-ma-primary transition-colors" />
+                    <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors" />
                   </div>
                 </div>
               </div>

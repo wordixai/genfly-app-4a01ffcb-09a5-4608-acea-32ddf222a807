@@ -8,23 +8,10 @@ const HeroCarousel = () => {
     {
       id: 1,
       image: "https://checkout.mueblesamerica.mx/media/wysiwyg/MA_2025_PANTALLIZATE_HOMESLIDE_DESKTOP_PRODUCTOS_SELECCIONADOS_2160X600_1.jpg",
-      title: "Hasta 40% de descuento",
-      subtitle: "en productos seleccionados",
+      title: "PANTALLIZATE",
+      subtitle: "Hasta 40% de descuento en productos seleccionados",
+      buttonText: "Ver promoción",
       link: "/outlet-ma.html"
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3",
-      title: "Tecnología para tu hogar",
-      subtitle: "Los mejores precios en electrónicos",
-      link: "/tecnologia"
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3",
-      title: "Muebles modernos",
-      subtitle: "Transforma tu espacio",
-      link: "/muebles"
     }
   ];
 
@@ -42,28 +29,21 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden">
+    <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden">
       {/* Slides */}
       <div 
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {slides.map((slide, index) => (
-          <div key={slide.id} className="w-full h-[400px] md:h-[600px] flex-shrink-0 relative">
-            <img
-              src={slide.image}
-              alt={slide.title}
-              className="w-full h-full object-cover"
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-              <div className="text-center text-white max-w-4xl px-4">
-                <h2 className="text-4xl md:text-6xl font-bold mb-4">{slide.title}</h2>
-                <p className="text-xl md:text-2xl mb-8">{slide.subtitle}</p>
-                <button className="bg-ma-teal hover:bg-ma-primary text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors">
-                  Ver ofertas
-                </button>
-              </div>
+          <div key={slide.id} className="w-full h-[300px] md:h-[400px] flex-shrink-0 relative">
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${slide.image})`
+              }}
+            >
+              {/* Overlay content is already in the image */}
             </div>
           </div>
         ))}
@@ -74,13 +54,13 @@ const HeroCarousel = () => {
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 p-2 rounded-full transition-all"
       >
-        <ChevronLeft className="w-6 h-6 text-ma-secondary" />
+        <ChevronLeft className="w-6 h-6 text-gray-700" />
       </button>
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 p-2 rounded-full transition-all"
       >
-        <ChevronRight className="w-6 h-6 text-ma-secondary" />
+        <ChevronRight className="w-6 h-6 text-gray-700" />
       </button>
 
       {/* Dots Indicator */}
@@ -94,6 +74,9 @@ const HeroCarousel = () => {
             }`}
           />
         ))}
+        <button className="w-3 h-3 rounded-full bg-white bg-opacity-50" />
+        <button className="w-3 h-3 rounded-full bg-white bg-opacity-50" />
+        <button className="w-3 h-3 rounded-full bg-white bg-opacity-50" />
       </div>
     </div>
   );

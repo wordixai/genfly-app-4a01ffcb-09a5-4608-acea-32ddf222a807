@@ -1,4 +1,4 @@
-import { Heart, Truck, CreditCard } from 'lucide-react';
+import { Heart, Truck, Home } from 'lucide-react';
 
 interface ProductCardProps {
   product: {
@@ -19,28 +19,26 @@ const ProductCard = ({ product }: ProductCardProps) => {
       currency: 'MXN' 
     }).format(price);
 
-  const discount = Math.round(((product.originalPrice - product.currentPrice) / product.originalPrice) * 100);
-
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow group relative">
+    <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group relative border border-gray-100">
       {/* Wishlist Button */}
-      <button className="absolute top-3 right-3 z-10 p-2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full transition-all">
-        <Heart className="w-4 h-4 text-gray-600 hover:text-red-500" />
+      <button className="absolute top-3 right-3 z-10 p-2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full shadow-sm transition-all">
+        <Heart className="w-4 h-4 text-gray-500 hover:text-red-500" />
       </button>
 
       {/* Product Image */}
-      <div className="aspect-square overflow-hidden rounded-t-lg">
+      <div className="aspect-square overflow-hidden rounded-t-lg bg-gray-50 p-4">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
       </div>
 
       {/* Product Info */}
       <div className="p-4">
-        <h3 className="font-semibold text-sm text-ma-secondary mb-3 line-clamp-2 min-h-[40px]">
+        <h3 className="font-semibold text-sm text-gray-800 mb-3 line-clamp-2 min-h-[40px] leading-tight">
           {product.name}
         </h3>
 
@@ -48,40 +46,43 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="mb-3">
           <p className="text-sm text-gray-600 mb-1">Precio de contado</p>
           <div className="space-y-1">
-            <p className="text-sm">
-              De: <span className="text-ma-primary line-through">{formatPrice(product.originalPrice)}</span>
+            <p className="text-sm text-gray-600">
+              De: <span className="text-blue-600 line-through">{formatPrice(product.originalPrice)}</span>
             </p>
             <p className="text-sm">
-              A: <span className="text-lg font-bold text-ma-secondary">{formatPrice(product.currentPrice)}</span>
+              A: <span className="text-xl font-bold text-gray-900">{formatPrice(product.currentPrice)}</span>
             </p>
           </div>
         </div>
 
         {/* Weekly Payment */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-end justify-between mb-4">
           <div className="text-sm">
-            Desde <span className="font-medium text-ma-primary">{formatPrice(product.weeklyPayment)}</span>
-            <span className="text-xs text-gray-600"> semanales</span>
-            <div className="text-xs text-gray-500 mt-1">
-              <img src="/api/placeholder/93/17" alt="Muebles América" className="inline h-4" />
+            <div className="mb-1">
+              Desde <span className="font-medium text-blue-600">{formatPrice(product.weeklyPayment)}</span>
+            </div>
+            <span className="text-xs text-gray-600">semanales</span>
+            <div className="mt-2">
+              <img 
+                src="https://www.mueblesamerica.mx/assets/muebles-america-logo-xs.png" 
+                alt="Muebles América" 
+                className="h-4"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
             </div>
           </div>
-          <div className="flex space-x-2">
-            <div className="flex items-center">
-              <Truck className="w-4 h-4 text-ma-primary" />
-            </div>
-            <div className="flex items-center">
-              <CreditCard className="w-4 h-4 text-ma-primary" />
-            </div>
+          <div className="flex space-x-2 text-gray-600">
+            <Truck className="w-4 h-4" />
+            <Home className="w-4 h-4" />
           </div>
         </div>
 
-        {/* Discount Badge */}
-        {discount > 0 && (
-          <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-            -{discount}%
-          </div>
-        )}
+        {/* Add to Cart Button */}
+        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
+          Agregar al carrito
+        </button>
       </div>
     </div>
   );
