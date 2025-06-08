@@ -1,12 +1,92 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Header from '../components/Header';
+import HeroCarousel from '../components/HeroCarousel';
+import CategoryGrid from '../components/CategoryGrid';
+import ProductSection from '../components/ProductSection';
+import PromoBanner from '../components/PromoBanner';
+import ServiceGrid from '../components/ServiceGrid';
+import Footer from '../components/Footer';
+import { useProducts } from '../hooks/useProducts';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+  const { products, favorites, loading } = useProducts();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ma-primary mx-auto mb-4"></div>
+          <p className="text-ma-secondary">Cargando...</p>
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen">
+      <Header />
+      
+      {/* Hero Carousel */}
+      <HeroCarousel />
+
+      {/* Promo Banner */}
+      <div className="container mx-auto px-4 py-8">
+        <PromoBanner 
+          image="https://checkout.mueblesamerica.mx/media/wysiwyg/2160X359_DESKTOP_25MONEDERO_3.jpg"
+          alt="25% en monedero"
+          link="/promotions/promociones-ma"
+        />
+      </div>
+
+      {/* Category Grid */}
+      <CategoryGrid />
+
+      {/* Products Section */}
+      {products.length > 0 && (
+        <ProductSection 
+          title="Lo que estabas buscando"
+          products={products}
+        />
+      )}
+
+      {/* Credilana Banner */}
+      <div className="container mx-auto px-4 py-8">
+        <PromoBanner 
+          image="https://checkout.mueblesamerica.mx/media/wysiwyg/cl_2024_banner_mobile_2160x359.jpg"
+          alt="Credilana"
+          link="/credilana"
+        />
+      </div>
+
+      {/* Service Grid */}
+      <ServiceGrid />
+
+      {/* Favorites Section */}
+      {favorites.length > 0 && (
+        <ProductSection 
+          title="Los favoritos del mes"
+          products={favorites}
+        />
+      )}
+
+      {/* Catalog Banner */}
+      <div className="container mx-auto px-4 py-8">
+        <PromoBanner 
+          image="https://checkout.mueblesamerica.mx/media/wysiwyg/MA_2025_banner_p_gina_web.jpg"
+          alt="Catálogo 2025"
+          link="https://issuu.com/jl.velardebabun/docs/cat_logo_de_muebles_am_rica_02"
+        />
+      </div>
+
+      {/* Free Shipping Banner */}
+      <div className="container mx-auto px-4 py-8">
+        <PromoBanner 
+          image="https://checkout.mueblesamerica.mx/media/wysiwyg/2160X359_DESKTOP_envio_1.jpg"
+          alt="Envío gratis"
+          link="/envio-gratis"
+        />
+      </div>
+
+      <Footer />
     </div>
   );
 };
